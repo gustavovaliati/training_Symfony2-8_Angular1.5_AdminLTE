@@ -1,48 +1,51 @@
 # Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+symfony-root/app/cache/*
+symfony-root/app/logs/*
+!symfony-root/app/cache/.gitkeep
+!symfony-root/app/logs/.gitkeep
 
 # Email spool folder
-/app/spool/*
+symfony-root/app/spool/*
 
 # Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-/var/sessions/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
+symfony-root/var/cache/*
+symfony-root/var/logs/*
+symfony-root/var/sessions/*
+!symfony-root/var/cache/.gitkeep
+!symfony-root/var/logs/.gitkeep
+!symfony-root/var/sessions/.gitkeep
 
 # Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
+symfony-root/app/config/parameters.yml
+symfony-root/app/config/parameters.ini
 
 # Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
-/vendor/
+symfony-root/app/bootstrap.php.cache
+symfony-root/var/bootstrap.php.cache
+symfony-root/bin/*
+!symfony-root/bin/console
+!symfony-root/bin/symfony_requirements
+symfony-root/vendor/
 
 # Assets and user uploads
-/web/bundles/
-/web/uploads/
+symfony-root/web/bundles/
+symfony-root/web/uploads/
 
 # Assets managed by Bower
-/web/assets/vendor/
+symfony-root/web/assets/vendor/
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+symfony-root/app/phpunit.xml
+phpunit.xml
 
 # Build data
-/build/
+symfony-root/build/
 
 # Composer PHAR
-/composer.phar
+composer.phar
+symfony-root/composer.phar
+symfony-root/composer.lock
+
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~

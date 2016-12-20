@@ -1,0 +1,10 @@
+{
+  "name": "training_Symfony2.8_Angular1.5_AdminLTE",
+  "version": "1.0.0",
+  "description": "training project",
+  "author": "GRV",
+  "license": "Apache",
+  "dependencies": {
+
+  }
+}
