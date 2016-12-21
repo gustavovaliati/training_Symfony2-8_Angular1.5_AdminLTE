@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@AcmeBlogBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -18,7 +19,7 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:      { enable_annotations: true , enabled: true }
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
@@ -38,23 +39,15 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   pdo_pgsql
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
-
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 
 # Swiftmailer Configuration
@@ -64,3 +57,78 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Nelmio CORS Configuration
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        max_age: 3600
+        hosts: []
+        origin_regex: false
+
+nelmio_api_doc: ~
+
+# FOSRest Configuration
+fos_rest:
+    body_listener: true
+    #format_listener: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+    # view:
+    #     view_response_listener: 'force'
+    #     formats:
+    #         xml: true
+    #         json : true
+    #     templating_formats:
+    #         html: true
+    #     force_redirects:
+    #         html: true
+    #     failed_validation: HTTP_BAD_REQUEST
+    #     default_engine: twig
+    # routing_loader:
+    #     default_format: json
+
+# fos_rest:
+#     serializer:
+#         serialize_null: true
+#     view:
+# # default_engine: php
+#         view_response_listener: force
+#         force_redirects:
+#           html: true
+# # xml: true
+#         formats:
+#             json: true
+#             xml: true
+#             rss: false
+#         templating_formats:
+#             html: true
+#         mime_types:
+#             json: ['application/json', 'application/x-json', 'application/vnd.example-com.foo+json']
+#             rss: 'application/rss+xml'
+#             jpg: 'image/jpeg'
+#             png: 'image/png'
+#     body_listener: true
+#     param_fetcher_listener: force
+#     allowed_methods_listener: true
+#     access_denied_listener:
+#         json: true
+#     format_listener:
+#         rules:
+#           - { path: '^/', priorities: ['html','json', 'xml'], fallback_format: html, prefer_extension: true }
+#     routing_loader:
+#         default_format: ~
+#     exception:
+#         codes:
+#             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+#         messages:
+#             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true

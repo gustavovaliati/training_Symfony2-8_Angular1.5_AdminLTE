@@ -1,3 +1,7 @@
+# node
+node_modules/
+
+
 # Cache and logs (Symfony2)
 symfony-root/app/cache/*
 symfony-root/app/logs/*
