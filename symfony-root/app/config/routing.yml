@@ -1,23 +1,48 @@
-acme_blogs:
-    type: rest
-    prefix: /api
-    resource: "@AcmeBlogBundle/Resources/config/routes.yml"
+my_app_login_example_mainapp:
+    resource:   "@LoginExampleBundle/Controller/IndexPageController.php"
+    type:       annotation
+    prefix:     /
+
+my_app_login_example_user:
+    resource:   "@LoginExampleBundle/Controller/UserController.php"
+    type:       annotation
+    prefix:     /user
+    # schemes: [https]
+
+my_app_login_example_API:
+    resource:   "@LoginExampleBundle/Controller/APIv1"
+    type:       annotation
+    prefix:     /api/v1
+
+NelmioApiDocBundle:
+    resource:   "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:     /api/doc
+
+fos_user:
+    resource:   "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:     /userbundle
+
+# grv_rest_one:
+#     resource: "@GRVRestOneBundle/Controller/"
+#     type:     annotation
+#     prefix:   /grv
+#
+# acme_blogs:
+#     type: rest
+#     prefix: /acme
+#     resource: "@AcmeBlogBundle/Resources/config/routes.yml"
 
 # acme_blog:
 #     resource: "@AcmeBlogBundle/Controller/"
 #     type:     annotation
 #     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+# app:
+#     resource: "@AppBundle/Controller/"
+#     type:     annotation
 #REST
 
 # rest :
 #   type : rest
 #   resource : "routing_rest.yml"
 #   prefix : /api
-
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc

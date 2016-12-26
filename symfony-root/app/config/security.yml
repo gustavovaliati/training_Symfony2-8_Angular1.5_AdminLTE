@@ -2,23 +2,45 @@
 # http://symfony.com/doc/current/security.html
 security:
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    # role_hierarchy:
+    #     ROLE_ADMIN:       ROLE_USER
+    #     ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    encoders:
+        LoginExampleBundle\Entity\User: bcrypt
+
     providers:
-        in_memory:
-            memory: ~
+        database_users:
+            entity: { class: LoginExampleBundle:User }
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: /
+            anonymous: true
+        user:
+            pattern: ^/user/
+            # anonymous: true
+            form_login:
+                # The route name that the login form submits to
+                check_path: security_login_check
+                login_path: security_login_form
+            logout:
+                # The route name the user can go to in order to logout
+                path: security_logout
+        api:
+            pattern: ^/api/
+            # anonymous: true
+            stateless: true
+            guard:
+                authenticators:
+                    - 'jwt_token_authenticator'
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+        - { path: ^/_wdt|_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /user/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        # allow anonymous API - if auth is needed, it's handled in the controller
+        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: /, roles: IS_AUTHENTICATED_ANONYMOUSLY }

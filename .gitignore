@@ -15,9 +15,11 @@ symfony-root/app/spool/*
 symfony-root/var/cache/*
 symfony-root/var/logs/*
 symfony-root/var/sessions/*
+symfony-root/var/jwt/*
 !symfony-root/var/cache/.gitkeep
 !symfony-root/var/logs/.gitkeep
 !symfony-root/var/sessions/.gitkeep
+!symfony-root/var/jwt/.gitkeep
 
 # Parameters
 symfony-root/app/config/parameters.yml
