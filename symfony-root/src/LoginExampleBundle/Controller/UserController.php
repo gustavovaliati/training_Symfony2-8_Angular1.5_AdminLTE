@@ -118,16 +118,17 @@ class UserController extends BaseController
     public function testLoginAction(Request $request)
     {
         $logger = $this->get('logger');
-        $logger->info("teste");
+        $logger->info("teste>> " . $request->request->get('_username'));
         $user = $this->getDoctrine()->getRepository('LoginExampleBundle:User')->findOneBy(['username' => $request->request->get('_username')]);
         if(!$user){
-            throw $this->createNotFoundException();
+            return new JsonResponse(['errors' => ['invalid user']],404);
+            // throw $this->createNotFoundException();
         }
         $isValid = $this->get('security.password_encoder')->isPasswordValid($user, $request->request->get('_password'));
 
         if (!$isValid) {
             // throw new BadCredentialsException();
-            return new JsonResponse(['errors' => "Bad credentials"]);
+            return new JsonResponse(['errors' => ["Bad credentials"]],404);
         }
         $logger->info('user: ' . $user->getUsername());
 

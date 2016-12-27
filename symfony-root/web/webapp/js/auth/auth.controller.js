@@ -18,6 +18,8 @@ class AuthCtrl {
         this._$state.go('app.home');
       },
       (err) => {
+          console.log('erro aqui');
+        console.log(err.data.errors);
         this.isSubmitting = false;
         this.errors = err.data.errors;
       }

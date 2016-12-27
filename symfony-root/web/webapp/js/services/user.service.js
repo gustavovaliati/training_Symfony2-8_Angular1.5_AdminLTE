@@ -15,16 +15,18 @@ export default class User {
 
   attemptAuth(type, credentials) {
     let route = (type === 'login') ? '/login' : '';
+    console.log(credentials);
     return this._$http({
-      url: this._AppConstants.api + '/users' + route,
+      url: this._AppConstants.api + '/user/test' + route,
       method: 'POST',
-      data: {
-        user: credentials
-      }
+      data: credentials
     }).then(
       (res) => {
-        this._JWT.save(res.data.user.token);
-        this.current = res.data.user;
+        console.log(res);
+        // this._JWT.save(res.data.user.token);
+        // this.current = res.data.user;
+        this._JWT.save(res.data.token);
+        this.current = res.data.token;
 
         return res;
       }

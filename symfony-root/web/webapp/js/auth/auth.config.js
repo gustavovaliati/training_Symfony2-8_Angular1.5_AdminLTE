@@ -4,7 +4,7 @@ function AuthConfig($stateProvider, $httpProvider) {
   $stateProvider
 
   .state('app.login', {
-    url: '/login',
+    url: '/',
     controller: 'AuthCtrl as $ctrl',
     templateUrl: 'auth/auth.html',
     title: 'Sign in',

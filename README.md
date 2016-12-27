@@ -5,9 +5,29 @@ For Angularjs: <https://angularjs.org/>
 For AdminLTE: <https://almsaeedstudio.com>
 Knowledge sources:
 * https://thinkster.io/angularjs-es6-tutorial
+* https://knpuniversity.com/screencast/symfony-rest4
 
-# prepare
+# HOW TO DEV
 
-npm install
-gulp
-php symfony-root/app/console server:start
+## FRONTEND
+
+### DEV
+
+cd front-root;
+npm install;
+gulp;
+
+### DEPLOY
+
+cd front-root;
+npm install;
+gulp deploy;
+
+
+## BACKEND
+
+cd symfony-root;
+composer install;
+php app/console doctrine:schema:update --force;
+php app/console doctrine:fixtures:load;
+php app/console server:start;

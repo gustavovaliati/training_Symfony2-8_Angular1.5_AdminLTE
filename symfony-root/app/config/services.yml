@@ -11,3 +11,10 @@ services:
     jwt_token_authenticator:
         class: LoginExampleBundle\Security\JwtTokenAuthenticator
         autowire: true
+    api_exception_subscriber:
+        class: LoginExampleBundle\EventListener\ApiExceptionSubscriber
+        arguments: ['%kernel.debug%', '@api.response_factory', '@logger']
+        tags:
+            - { name: kernel.event_subscriber }
+    api.response_factory:
+        class: LoginExampleBundle\APIBase\ResponseFactory

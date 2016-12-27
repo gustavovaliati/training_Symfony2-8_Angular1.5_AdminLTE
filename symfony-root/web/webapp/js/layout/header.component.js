@@ -8,6 +8,8 @@ class AppHeaderCtrl {
     $scope.$watch('User.current', (newUser) => {
       this.currentUser = newUser;
     })
+
+    this.home = false;
   }
 }
 

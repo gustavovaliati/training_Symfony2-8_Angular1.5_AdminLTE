@@ -3,11 +3,16 @@ function HomeConfig($stateProvider) {
 
   $stateProvider
   .state('app.home', {
-    url: '/',
+    url: '/home',
     controller: 'HomeCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'home/home.html',
-    title: 'Home'
+    title: 'Home',
+    resolve: {
+      auth: function(User) {
+        return User.ensureAuthIs(true);
+      }
+    }
   });
 
 };

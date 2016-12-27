@@ -1,6 +1,6 @@
 <ul class="error-messages" ng-show="$ctrl.errors">
-  <div ng-repeat="(field, errors) in $ctrl.errors">
-    <li ng-repeat="error in errors">
+  <div ng-repeat="(field, errors) in $ctrl.errors ">
+    <li ng-repeat="error in errors track by $index">
       {{field}} {{error}}
     </li>
   </div>
